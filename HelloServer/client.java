@@ -1,4 +1,3 @@
-
 /*
  * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
  *
@@ -48,21 +47,19 @@ public class client {
         try (
             Socket kkSocket = new Socket(hostName, portNumber);
             PrintWriter out = new PrintWriter(kkSocket.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(
-                new InputStreamReader(kkSocket.getInputStream()));
+            DataInputStream in = new DataInputStream(kkSocket.getInputStream());
         ) {
-            BufferedReader stdIn =
-                new BufferedReader(new InputStreamReader(System.in));
+            DataInputStream stdIn = new DataInputStream(System.in);
 
             String fromServer;
             String fromUser;
  
-            while ((fromServer = in.readLine()) != null) {
+            while ((fromServer = in.readUTF()) != null) {
                 System.out.println("Server: " + fromServer);
                 if (fromServer.equals("BYE"))
                     break;
                  
-                fromUser = stdIn.readLine();
+                fromUser = stdIn.readUTF();
                 if (fromUser != null) {
                     System.out.println("Client: " + fromUser);
                     out.println(fromUser);
