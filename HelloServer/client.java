@@ -1,77 +1,44 @@
-/*
- * Copyright (c) 1995, 2013, Oracle and/or its affiliates. All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- *   - Redistributions of source code must retain the above copyright
- *     notice, this list of conditions and the following disclaimer.
- *
- *   - Redistributions in binary form must reproduce the above copyright
- *     notice, this list of conditions and the following disclaimer in the
- *     documentation and/or other materials provided with the distribution.
- *
- *   - Neither the name of Oracle or the names of its
- *     contributors may be used to endorse or promote products derived
- *     from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
- * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
 import java.net.*;
 import java.io.*;
 
 public class client {
-    public static void main(String[] args) throws IOException {
-         
-        if (args.length != 2) {
-            System.err.println(
-                "Usage: java EchoClient <host name> <port number>");
-            System.exit(1);
-        }
- 
-        String hostName = args[0];
-        int portNumber = Integer.parseInt(args[1]);
- 
-        try (
-            Socket kkSocket = new Socket(hostName, portNumber);
-            PrintWriter out = new PrintWriter(kkSocket.getOutputStream(), true);
-            DataInputStream in = new DataInputStream(kkSocket.getInputStream());
-        ) {
-            DataInputStream stdIn = new DataInputStream(System.in);
+    private static final String HOST = "127.0.0.1";
+    private static final int PORT = 50000;
+    private static final String HELO = "HELO\n";
+    private static final String OK = "OK\n";
+    private static final String AUTH = "AUTH USER\n";
+    private static final String REDY = "REDY\n";
+    private static final String TERM = "QUIT\n";
 
-            String fromServer;
-            String fromUser;
- 
-            while ((fromServer = in.readUTF()) != null) {
-                System.out.println("Server: " + fromServer);
-                if (fromServer.equals("BYE"))
-                    break;
-                 
-                fromUser = stdIn.readUTF();
-                if (fromUser != null) {
-                    System.out.println("Client: " + fromUser);
-                    out.println(fromUser);
-                }
-            }
+    public static void main(String[] args) throws IOException {
+        try {
+            Socket sock = new Socket(HOST, PORT);
+            BufferedReader dis = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+            DataOutputStream dos = new DataOutputStream(sock.getOutputStream());
+
+            writeflush(dos, HELO);
+            System.out.println(dis.readLine());
+            writeflush(dos, AUTH);
+            System.out.println(dis.readLine());
+            writeflush(dos, REDY);
+            System.out.println(dis.readLine());
+            //writeflush(dos, OK);
+            //System.out.println(dis.readLine());
+            writeflush(dos, TERM);
+            System.out.println(dis.readLine());
+            
+            sock.close();
         } catch (UnknownHostException e) {
-            System.err.println("Don't know about host " + hostName);
+            System.err.println("Unknown Host Exception: " + HOST);
             System.exit(1);
         } catch (IOException e) {
-            System.err.println("Couldn't get I/O for the connection to " +
-                hostName);
+            System.err.println("IO Exception to: " + HOST);
             System.exit(1);
         }
+    }
+
+    private static void writeflush(DataOutputStream dos, String s) throws IOException {
+        dos.write(s.getBytes());
+        dos.flush();
     }
 }
