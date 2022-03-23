@@ -5,10 +5,20 @@ public class client {
     private static final String HOST = "127.0.0.1";
     private static final int PORT = 50000;
     private static final String HELO = "HELO\n";
-    private static final String OK = "OK\n";
+    //private static final String OK = "OK\n";
     private static final String AUTH = "AUTH USER\n";
     private static final String REDY = "REDY\n";
-    private static final String TERM = "QUIT\n";
+    private static final String QUIT = "QUIT\n";
+
+
+    private static String serverMsg(DataOutputStream dos, String msg, BufferedReader dis) throws IOException {
+        try {
+            writeflush(dos, msg);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return dis.readLine();
+    }
 
     public static void main(String[] args) throws IOException {
         try {
@@ -16,16 +26,14 @@ public class client {
             BufferedReader dis = new BufferedReader(new InputStreamReader(sock.getInputStream()));
             DataOutputStream dos = new DataOutputStream(sock.getOutputStream());
 
-            writeflush(dos, HELO);
-            System.out.println(dis.readLine());
-            writeflush(dos, AUTH);
-            System.out.println(dis.readLine());
-            writeflush(dos, REDY);
-            System.out.println(dis.readLine());
-            //writeflush(dos, OK);
-            //System.out.println(dis.readLine());
-            writeflush(dos, TERM);
-            System.out.println(dis.readLine());
+            //Helo & Auth
+            System.out.println(serverMsg(dos, HELO, dis));
+            System.out.println(serverMsg(dos, AUTH, dis));
+            System.out.println(serverMsg(dos, REDY, dis));
+            System.out.println(serverMsg(dos, QUIT, dis));
+
+
+            
             
             sock.close();
         } catch (UnknownHostException e) {
