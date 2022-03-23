@@ -1,4 +1,8 @@
 import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import java.util.Comparator;
 import java.io.*;
 
 public class client {
@@ -12,9 +16,11 @@ public class client {
     private static final String AUTH = "AUTH USER\n";
     private static final String REDY = "REDY\n";
     private static final String GETS = "GETS All\n";
-    //private static final String SCHD = "SCHD";
+    private static final String SCHD = "SCHD";
     private static final String QUIT = "QUIT\n";
-
+    
+    public static List<Server> serverL = new ArrayList<Server>();
+    public static List<Job> jobL = new ArrayList<Job>();
 
     private static String serverMsg(DataOutputStream dos, String msg, BufferedReader dis) throws IOException {
         try {
@@ -22,7 +28,12 @@ public class client {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return dis.readLine();
+        if (dis.ready())    return dis.readLine();
+        return null;
+    }
+
+    private static String serverPicker(){
+        return serverL.stream().max(Comparator.comparingInt(Server::getCORE)).get().serverName;
     }
     
     
@@ -35,36 +46,37 @@ public class client {
             //Helo & Auth
             System.out.println(serverMsg(dos, HELO, dis));
             System.out.println(serverMsg(dos, AUTH, dis));
-            System.out.println(serverMsg(dos, REDY, dis));
+            jobL.add(new Job(serverMsg(dos, REDY, dis).split(" ")));
             //get servers
-            String getsNum = serverMsg(dos, GETS, dis);
-            System.out.println(getsNum);
-            
-            String[] getsNumArr = getsNum.split(" ");
-
-            String getsAll = serverMsg(dos, OK, dis);
-            System.out.println(getsAll);
-            String[] getsAllArr = getsAll.split("\n");
-            Server[] serverL = new Server[Integer.parseInt(getsNumArr[1])];
-
-            for (int i = 0; i < getsAllArr.length; i++) {
-                String serverS = dis.readLine();
-                serverL[i] = new Server(serverS.split(" "));
-            }
-            
-            for (Server s : serverL) System.out.println(s);
-
-            /*System.out.println(serverMsg(dos, OK, dis));
-            
-            //Get Jobs
-            String JOBN = serverMsg(dos, REDY, dis);
-            System.out.println(JOBN);
-
-            String[] JOBNARR = JOBN.split(" ",8);*/
-
-
 
             
+            serverMsg(dos, GETS, dis);
+            serverL.add(new Server(serverMsg(dos, OK, dis).split(" ")));
+            
+            do  {
+                serverL.add(new Server(dis.readLine().split(" ")));
+            } while (dis.ready());
+
+            serverMsg(dos, OK, dis);
+            
+            //schd job loop
+            while (dis.readLine() != QUIT) {
+                for (Job j : jobL) {
+                    serverMsg(dos, String.format("%s %d %s\n", SCHD, j.jobID, serverPicker()), dis);
+                }
+                
+                jobL.clear();
+
+                //jobL.add(new Job(serverMsg(dos, REDY, dis).split(" ")));
+                if (dis.ready()) {
+                    if (dis.readLine() == QUIT) break;
+                }
+            } 
+                
+
+                
+            
+
             System.out.println(serverMsg(dos, QUIT, dis));
             sock.close();
         } catch (UnknownHostException e) {
