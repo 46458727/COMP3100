@@ -3,7 +3,7 @@ public class Server {
     int curStartTime, core, memory, disk;
 
     public Server (String[] strArr) {
-        //if (strArr.length != 7) return;
+        if (strArr.length != 9) return;
 
         serverName = String.format("%s %s", strArr[0], strArr[1]);
         state = strArr[2];

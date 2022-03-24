@@ -23,13 +23,25 @@ public class client {
     public static List<Job> jobL = new ArrayList<Job>();
 
     private static String serverMsg(DataOutputStream dos, String msg, BufferedReader dis) throws IOException {
+        int count = 0;
         try {
             writeflush(dos, msg);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (dis.ready())    return dis.readLine();
-        return null;
+        
+        while (!dis.ready()) {
+            if (count >= 5) return null;
+            try {
+                Thread.sleep(50);
+                count++;
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+        return dis.readLine();
+        
     }
 
     private static String serverPicker(){
@@ -50,28 +62,30 @@ public class client {
             //get servers
 
             
-            serverMsg(dos, GETS, dis);
+            System.out.println(serverMsg(dos, GETS, dis));
+
             serverL.add(new Server(serverMsg(dos, OK, dis).split(" ")));
-            
+    
+
             do  {
                 serverL.add(new Server(dis.readLine().split(" ")));
             } while (dis.ready());
 
-            serverMsg(dos, OK, dis);
+            for (Server s : serverL) System.out.println(s.serverName);
             
+            serverMsg(dos, OK, dis);
+
             //schd job loop
-            while (dis.readLine() != QUIT) {
+            while (jobL.size() != 0) {
                 for (Job j : jobL) {
                     serverMsg(dos, String.format("%s %d %s\n", SCHD, j.jobID, serverPicker()), dis);
                 }
                 
                 jobL.clear();
-
-                //jobL.add(new Job(serverMsg(dos, REDY, dis).split(" ")));
-                if (dis.ready()) {
-                    if (dis.readLine() == QUIT) break;
-                }
-            } 
+                String[] testJob = serverMsg(dos, REDY, dis).split(" ");
+                if (testJob[0].equals("NONE")) break;
+                jobL.add(new Job(testJob));        
+            }
                 
 
                 
