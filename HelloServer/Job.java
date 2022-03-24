@@ -1,6 +1,6 @@
 public class Job {
     int submitTime, jobID, estRuntime, core, memory, disk;
-
+    String status;
     public Job(String[] sArr) {
         if (sArr.length != 7) return;
 
@@ -10,5 +10,6 @@ public class Job {
         core = Integer.parseInt(sArr[4]);
         memory = Integer.parseInt(sArr[5]);
         disk = Integer.parseInt(sArr[6]);
+        status = "NEW";
     }
 }
