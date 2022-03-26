@@ -1,6 +1,6 @@
 public class Server {
-    String serverName, state;
-    int curStartTime, core, memory, disk;
+    private String serverName, state;
+    private int curStartTime, core, memory, disk;
 
     public Server (String[] strArr) {
         if (strArr.length != 9) return;
@@ -13,7 +13,23 @@ public class Server {
         disk = Integer.parseInt(strArr[6]);
     }
 
-    public Integer getCORE() {
+    public Integer getCore() {
         return core;
+    }
+
+    public Integer getMemory() {
+        return memory;
+    }
+
+    public Integer getDisk() {
+        return disk;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getServerName() {
+        return serverName;
     }
 }
