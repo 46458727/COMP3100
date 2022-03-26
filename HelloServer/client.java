@@ -8,14 +8,14 @@ public class client {
         ConnectionManager cManager = new ConnectionManager();
         JobManager jManager = new JobManager();
 
-        cManager.handShake(jManager, cManager);
+        cManager.handShake(jManager, cManager, null);
 
         ServerManager sManager = new ServerManager(cManager);
         Scheduler scheduler = new Scheduler();
 
         while (jManager.jobAvaliable()) {
             scheduler.scheduleJob(cManager, sManager, jManager.getJobList().get(jManager.getJobList().size() - 1));
-            jManager.getJob(cManager);
+            jManager.getJob(cManager, sManager);
         }
 
         System.out.println(cManager.serverMsg(QUIT));

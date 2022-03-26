@@ -30,6 +30,14 @@ public class Server {
         return state;
     }
 
+    public void serverFailed() {
+        this.state = "FAILED";
+    }
+
+    public void serverRecovered() {
+        this.state = "BOOTING";
+    }
+
     public String getServerName() {
         return serverName;
     }

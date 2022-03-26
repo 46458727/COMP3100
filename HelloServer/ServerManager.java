@@ -5,7 +5,7 @@ import java.util.List;
 
 public class ServerManager {
     public static List<Server> serverL;
-    private static final String OK = "OK\n", GETS = "GETS All\n";
+    private static final String OK = "OK\n", GETS = "GETS All\n", RESF = "RESF";
 
     public ServerManager(ConnectionManager conMan) throws IOException {
         // Helo & Auth
@@ -17,6 +17,17 @@ public class ServerManager {
         
         // close server list
         conMan.serverMsg(OK);
+    }
+
+    public void serverStatusUpdate(String[] sInfo) {
+        
+        for (Server s : serverL) {
+            if (s.getServerName().equals(String.format("%s %s", sInfo[0], sInfo[1]))) { 
+                if (sInfo[0].equals(RESF))  s.serverFailed();
+                else s.serverRecovered();
+                break;
+            }
+        }
     }
 
     public String serverPicker() {

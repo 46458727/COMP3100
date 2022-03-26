@@ -19,10 +19,10 @@ public class ConnectionManager {
         dos = new DataOutputStream(sock.getOutputStream());
     }
 
-    public void handShake(JobManager jManager, ConnectionManager cManager) throws IOException{
+    public void handShake(JobManager jManager, ConnectionManager cManager, ServerManager sManager) throws IOException{
         serverMsg(HELO);
         serverMsg(AUTH);
-        jManager.getJob(cManager);
+        jManager.getJob(cManager, sManager);
     }
     public String serverMsg(String msg) throws IOException {
         writeflush(dos, msg);
