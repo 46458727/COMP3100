@@ -9,65 +9,39 @@ public class client {
 
     private static final String HOST = "127.0.0.1";
     private static final int PORT = 50000;
-    private static final String HELO = "HELO\n";
+    
     private static final String OK = "OK\n";
-    private static final String AUTH = "AUTH USER\n";
+    
     private static final String REDY = "REDY\n";
-    private static final String GETS = "GETS All\n";
+  
     private static final String SCHD = "SCHD";
     private static final String QUIT = "QUIT\n";
 
-    public static List<Server> serverL = new ArrayList<Server>();
+    
     public static List<Job> jobL = new ArrayList<Job>();
 
-    private static String serverMsg(DataOutputStream dos, String msg, BufferedReader dis) throws IOException {
-        int count = 0;
-        try {
-            writeflush(dos, msg);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        while (!dis.ready()) {
-            if (count >= 5)
-                return null;
-            try {
-                Thread.sleep(50);
-                count++;
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-        return dis.readLine();
 
-    }
-
-    private static String serverPicker() {
-        return serverL.stream().max(Comparator.comparingInt(Server::getCORE)).get().serverName;
-    }
+    
 
     public static void main(String[] args) throws IOException {
-
+        //open socket to talk with server
         Socket sock = new Socket(HOST, PORT);
-        
+        //create an data input & output stream to recieve and send commands
         BufferedReader dis = new BufferedReader(new InputStreamReader(sock.getInputStream()));
         DataOutputStream dos = new DataOutputStream(sock.getOutputStream());
 
-        // Helo & Auth
-        System.out.println(serverMsg(dos, HELO, dis));
-        System.out.println(serverMsg(dos, AUTH, dis));
+        ServerManager sManager = new ServerManager(dos, dis); //list of servers & info updater etc.
+
         jobL.add(new Job(serverMsg(dos, REDY, dis).split(" ")));
         // get servers
         
-        System.out.println(serverMsg(dos, GETS, dis));
+
+        System.out.println();
         // fill buffered reader with server message, guard buffered reader, at end of
         // loop add current readline as a server
         
-        for (serverMsg(dos, OK, dis); dis.ready(); serverL.add(new Server(dis.readLine().split(" "))));
         
-        // close server list
-        serverMsg(dos, OK, dis);
         
         // schd job loop
         while (jobL.size() != 0) {
@@ -84,10 +58,5 @@ public class client {
 
         System.out.println(serverMsg(dos, QUIT, dis));
         sock.close();
-    }
-
-    private static void writeflush(DataOutputStream dos, String s) throws IOException {
-        dos.write(s.getBytes());
-        dos.flush();
     }
 }
