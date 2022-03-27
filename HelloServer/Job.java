@@ -1,5 +1,5 @@
 public class Job {
-    int submitTime, jobID, estRuntime, core, memory, disk;
+    Integer submitTime, jobID, estRuntime, core, memory, disk;
     String status;
     public Job(String[] sArr) {
         if (sArr.length != 7) return;

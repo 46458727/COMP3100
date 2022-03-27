@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 public class ConnectionManager {
     private static final String HOST = "127.0.0.1";
     private static final int PORT = 50000;
-    private static final String HELO = "HELO\n", AUTH = "AUTH USER\n";
+    private static final String HELO = "HELO\n", QUIT = "QUIT\n",AUTH = String.format("AUTH %s\n", System.getProperty("user.name"));
     BufferedReader dis;
     DataOutputStream dos;
 
@@ -19,10 +19,10 @@ public class ConnectionManager {
         dos = new DataOutputStream(sock.getOutputStream());
     }
 
-    public void handShake(JobManager jManager, ConnectionManager cManager, ServerManager sManager) throws IOException{
+    public ServerManager handShake(JobManager jManager, ConnectionManager cManager) throws IOException{
         serverMsg(HELO);
         serverMsg(AUTH);
-        jManager.getJob(cManager, sManager);
+        return jManager.handshakeJob(cManager);
     }
     public String serverMsg(String msg) throws IOException {
         writeflush(dos, msg);
@@ -37,7 +37,8 @@ public class ConnectionManager {
         dos.flush();
     }
 
-    public void closeSocket() throws IOException{
+    public void quit() throws IOException {
+        serverMsg(QUIT);
         sock.close();
     }
 
