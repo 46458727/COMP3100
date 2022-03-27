@@ -1,6 +1,6 @@
 public class Server {
     private String serverName, state;
-    private int core, memory, disk;
+    private Integer core, memory, disk;
     //private int curStartTime;
 
     public Server (String[] strArr) {

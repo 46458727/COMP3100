@@ -1,21 +1,20 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class LRRIterator implements Iterable<Server>{
+public class LRRIterator implements Iterable<Server> {
     private List<Server> lRRServers;
 
     public LRRIterator(List<Server> serverL) {
+        lRRServers = new ArrayList<>();
         
-        lRRServers = serverL.stream()
-            .filter(s -> s.getCore() == serverL.get(0).getCore())
-            .collect(Collectors.toCollection(ArrayList::new));
-            
+        Integer largestCore = serverL.get(0).getCore();
+
+        for (Server s : serverL) {
+            if (s.getCore().equals(largestCore)) lRRServers.add(s);
+            else break;
+        };
     }
-
-
-
 
     @Override
     public Iterator<Server> iterator() {

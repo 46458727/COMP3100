@@ -14,7 +14,7 @@ public class ServerManager {
         //gets a list of all servers to reference later
         conMan.serverMsg(GETS);
         //Assumes message is DATA, goes ok, guards on more info left, adds server to list
-        for (conMan.serverMsg(OK); conMan.dis.ready(); serverL.add(new Server(conMan.dis.readLine().split(" "))));
+        for (serverL.add(new Server(conMan.serverMsg(OK).split(" "))); conMan.dis.ready(); serverL.add(new Server(conMan.dis.readLine().split(" "))));
 
         //sort server list descending
         Collections.sort(serverL, new ServerSortBySize());
