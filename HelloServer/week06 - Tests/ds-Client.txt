@@ -1,0 +1,165 @@
+# ds-sim server 14-Feb, 2022 @ MQ - client-server
+# Server-side simulator started with './ds-server -c S1DemoConfigs/ds-S1-config03--wk6.xml'
+# Waiting for connection to port 50000 of IP address 127.0.0.1
+# Welcome  lab46458727!
+# The system information can be read from 'ds-system.xml'
+t:         37 job     0 (waiting) on # 0 of server super (booting) SCHEDULED
+t:         60 job     1 (waiting) on # 1 of server super (booting) SCHEDULED
+t:         76 job     2 (waiting) on # 0 of server super (booting) SCHEDULED
+t:        111 job     3 (waiting) on # 1 of server super (booting) SCHEDULED
+t:        127 job     0 on # 0 of server super RUNNING
+t:        127 job     2 on # 0 of server super RUNNING
+t:        147 job     4 (running) on # 0 of server super (active) SCHEDULED
+t:        147 job     4 on # 0 of server super RUNNING
+t:        150 job     1 on # 1 of server super RUNNING
+t:        150 job     3 on # 1 of server super RUNNING
+t:        186 job     5 (running) on # 1 of server super (active) SCHEDULED
+t:        186 job     5 on # 1 of server super RUNNING
+t:        228 job     6 (running) on # 0 of server super (active) SCHEDULED
+t:        228 job     6 on # 0 of server super RUNNING
+t:        255 job     7 (running) on # 1 of server super (active) SCHEDULED
+t:        255 job     7 on # 1 of server super RUNNING
+t:        279 job     8 (running) on # 0 of server super (active) SCHEDULED
+t:        279 job     8 on # 0 of server super RUNNING
+t:        284 job     9 (running) on # 1 of server super (active) SCHEDULED
+t:        284 job     9 on # 1 of server super RUNNING
+t:        286 job    10 (running) on # 0 of server super (active) SCHEDULED
+t:        286 job    10 on # 0 of server super RUNNING
+t:        298 job    11 (running) on # 1 of server super (active) SCHEDULED
+t:        298 job    11 on # 1 of server super RUNNING
+t:        300 job    12 (running) on # 0 of server super (active) SCHEDULED
+t:        300 job    12 on # 0 of server super RUNNING
+t:        302 job    13 (waiting) on # 1 of server super (active) SCHEDULED
+t:        307 job    14 (waiting) on # 0 of server super (active) SCHEDULED
+t:        310 job     4 on # 0 of server super COMPLETED
+t:        310 job    14 on # 0 of server super RUNNING
+t:        310 job    15 (waiting) on # 1 of server super (active) SCHEDULED
+t:        316 job    16 (waiting) on # 0 of server super (active) SCHEDULED
+t:        320 job    17 (waiting) on # 1 of server super (active) SCHEDULED
+t:        322 job    18 (waiting) on # 0 of server super (active) SCHEDULED
+t:        325 job    19 (waiting) on # 1 of server super (active) SCHEDULED
+t:        329 job    11 on # 1 of server super COMPLETED
+t:        329 job    13 on # 1 of server super RUNNING
+t:        329 job    20 (waiting) on # 0 of server super (active) SCHEDULED
+t:        332 job    21 (waiting) on # 1 of server super (active) SCHEDULED
+t:        336 job    22 (waiting) on # 0 of server super (active) SCHEDULED
+t:        336 job    23 (waiting) on # 1 of server super (active) SCHEDULED
+t:        340 job    24 (waiting) on # 0 of server super (active) SCHEDULED
+t:        342 job    25 (waiting) on # 1 of server super (active) SCHEDULED
+t:        346 job    26 (waiting) on # 0 of server super (active) SCHEDULED
+t:        347 job    27 (waiting) on # 1 of server super (active) SCHEDULED
+t:        351 job    28 (waiting) on # 0 of server super (active) SCHEDULED
+t:        360 job    29 (waiting) on # 1 of server super (active) SCHEDULED
+t:        362 job    30 (waiting) on # 0 of server super (active) SCHEDULED
+t:        362 job    31 (waiting) on # 1 of server super (active) SCHEDULED
+t:        393 job    32 (waiting) on # 0 of server super (active) SCHEDULED
+t:        394 job    33 (waiting) on # 1 of server super (active) SCHEDULED
+t:        398 job    12 on # 0 of server super COMPLETED
+t:        427 job    34 (waiting) on # 0 of server super (active) SCHEDULED
+t:        434 job    35 (waiting) on # 1 of server super (active) SCHEDULED
+t:        452 job    10 on # 0 of server super COMPLETED
+t:        452 job    16 on # 0 of server super RUNNING
+t:        459 job     5 on # 1 of server super COMPLETED
+t:        459 job    15 on # 1 of server super RUNNING
+t:        464 job    36 (waiting) on # 0 of server super (active) SCHEDULED
+t:        475 job    37 (waiting) on # 1 of server super (active) SCHEDULED
+t:        477 job    38 (waiting) on # 0 of server super (active) SCHEDULED
+t:        488 job     1 on # 1 of server super COMPLETED
+t:        491 job    39 (waiting) on # 1 of server super (active) SCHEDULED
+t:        501 job    40 (waiting) on # 0 of server super (active) SCHEDULED
+t:        502 job    41 (waiting) on # 1 of server super (active) SCHEDULED
+t:        502 job    42 (waiting) on # 0 of server super (active) SCHEDULED
+t:        505 job    43 (waiting) on # 1 of server super (active) SCHEDULED
+t:        514 job    44 (waiting) on # 0 of server super (active) SCHEDULED
+t:        520 job    14 on # 0 of server super COMPLETED
+t:        520 job    18 on # 0 of server super RUNNING
+t:        628 job     9 on # 1 of server super COMPLETED
+t:        628 job    45 (waiting) on # 1 of server super (active) SCHEDULED
+t:        649 job    13 on # 1 of server super COMPLETED
+t:        649 job    17 on # 1 of server super RUNNING
+t:        660 job    46 (waiting) on # 0 of server super (active) SCHEDULED
+t:        677 job    47 (waiting) on # 1 of server super (active) SCHEDULED
+t:        687 job    48 (waiting) on # 0 of server super (active) SCHEDULED
+t:        711 job    18 on # 0 of server super COMPLETED
+t:        714 job    49 (waiting) on # 1 of server super (active) SCHEDULED
+t:        758 job     7 on # 1 of server super COMPLETED
+t:        799 job     8 on # 0 of server super COMPLETED
+t:        829 job    15 on # 1 of server super COMPLETED
+t:       1457 job    17 on # 1 of server super COMPLETED
+t:       1457 job    19 on # 1 of server super RUNNING
+t:       1457 job    21 on # 1 of server super RUNNING
+t:       1508 job    21 on # 1 of server super COMPLETED
+t:       1508 job    23 on # 1 of server super RUNNING
+t:       1508 job    25 on # 1 of server super RUNNING
+t:       1759 job     0 on # 0 of server super COMPLETED
+t:       1759 job    20 on # 0 of server super RUNNING
+t:       1854 job    19 on # 1 of server super COMPLETED
+t:       1854 job    27 on # 1 of server super RUNNING
+t:       1861 job     2 on # 0 of server super COMPLETED
+t:       1940 job    20 on # 0 of server super COMPLETED
+t:       1940 job    22 on # 0 of server super RUNNING
+t:       1963 job    25 on # 1 of server super COMPLETED
+t:       2482 job    22 on # 0 of server super COMPLETED
+t:       2630 job    27 on # 1 of server super COMPLETED
+t:       2727 job    23 on # 1 of server super COMPLETED
+t:       3029 job     3 on # 1 of server super COMPLETED
+t:       3029 job    29 on # 1 of server super RUNNING
+t:       3063 job    29 on # 1 of server super COMPLETED
+t:       3063 job    31 on # 1 of server super RUNNING
+t:       3063 job    33 on # 1 of server super RUNNING
+t:       3063 job    35 on # 1 of server super RUNNING
+t:       3063 job    37 on # 1 of server super RUNNING
+t:       3135 job    16 on # 0 of server super COMPLETED
+t:       3239 job    37 on # 1 of server super COMPLETED
+t:       3239 job    39 on # 1 of server super RUNNING
+t:       3239 job    41 on # 1 of server super RUNNING
+t:       3256 job     6 on # 0 of server super COMPLETED
+t:       3256 job    24 on # 0 of server super RUNNING
+t:       3309 job    35 on # 1 of server super COMPLETED
+t:       3564 job    24 on # 0 of server super COMPLETED
+t:       3564 job    26 on # 0 of server super RUNNING
+t:       3564 job    28 on # 0 of server super RUNNING
+t:       3623 job    33 on # 1 of server super COMPLETED
+t:       3637 job    26 on # 0 of server super COMPLETED
+t:       3637 job    30 on # 0 of server super RUNNING
+t:       3695 job    39 on # 1 of server super COMPLETED
+t:       3766 job    41 on # 1 of server super COMPLETED
+t:       3904 job    28 on # 0 of server super COMPLETED
+t:       3904 job    32 on # 0 of server super RUNNING
+t:       3904 job    34 on # 0 of server super RUNNING
+t:       4140 job    30 on # 0 of server super COMPLETED
+t:       4140 job    36 on # 0 of server super RUNNING
+t:       4140 job    38 on # 0 of server super RUNNING
+t:       4140 job    40 on # 0 of server super RUNNING
+t:       4140 job    42 on # 0 of server super RUNNING
+t:       4239 job    40 on # 0 of server super COMPLETED
+t:       4407 job    42 on # 0 of server super COMPLETED
+t:       4407 job    44 on # 0 of server super RUNNING
+t:       4510 job    44 on # 0 of server super COMPLETED
+t:       4510 job    46 on # 0 of server super RUNNING
+t:       4510 job    48 on # 0 of server super RUNNING
+t:       4567 job    38 on # 0 of server super COMPLETED
+t:       4666 job    46 on # 0 of server super COMPLETED
+t:       4692 job    36 on # 0 of server super COMPLETED
+t:       4761 job    32 on # 0 of server super COMPLETED
+t:       5077 job    31 on # 1 of server super COMPLETED
+t:       5077 job    43 on # 1 of server super RUNNING
+t:       5077 job    45 on # 1 of server super RUNNING
+t:       5077 job    47 on # 1 of server super RUNNING
+t:       5215 job    43 on # 1 of server super COMPLETED
+t:       5215 job    49 on # 1 of server super RUNNING
+t:       5283 job    49 on # 1 of server super COMPLETED
+t:       5311 job    45 on # 1 of server super COMPLETED
+t:       5374 job    34 on # 0 of server super COMPLETED
+t:       5463 job    47 on # 1 of server super COMPLETED
+t:       6291 job    48 on # 0 of server super COMPLETED
+# -------------------------------------------------------------------------------------
+# 0 small servers used with a utilisation of 0.00 at the cost of $0.00
+# 0 medium servers used with a utilisation of 0.00 at the cost of $0.00
+# 0 large servers used with a utilisation of 0.00 at the cost of $0.00
+# 2 super servers used with a utilisation of 100.00 at the cost of $5.10
+# 0 ultrasuper servers used with a utilisation of 0.00 at the cost of $0.00
+# ==================================== [ Summary ] ====================================
+# actual simulation end time: 6291, #jobs: 50 (failed 0 times)
+# total #servers used: 2, avg util: 100.00% (ef. usage: 100.00%), total cost: $5.10
+# avg waiting time: 1854, avg exec time: 633, avg turnaround time: 2487
