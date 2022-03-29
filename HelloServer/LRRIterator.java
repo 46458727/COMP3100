@@ -9,9 +9,10 @@ public class LRRIterator implements Iterable<Server> {
         lRRServers = new ArrayList<>();
         
         Integer largestCore = serverL.get(0).getCore();
+        String largestName = serverL.get(0).getServerName();
 
         for (Server s : serverL) {
-            if (s.getCore().equals(largestCore)) lRRServers.add(s);
+            if (s.getCore().equals(largestCore) && s.getServerName().equals(largestName)) lRRServers.add(s);
             else break;
         };
     }
