@@ -1,11 +1,12 @@
 public class Server {
-    private String serverName, state;
-    private Integer core, memory, disk;
+    private String serverName, serverType, state;
+    private Integer serverID, core, memory, disk;
     //private int curStartTime;
 
     public Server (String[] strArr) {
         if (strArr.length != 9) return;
-
+        serverType = strArr[0];
+        serverID = Integer.parseInt(strArr[1]);
         serverName = String.format("%s %s", strArr[0], strArr[1]);
         state = strArr[2];
         //curStartTime = Integer.parseInt(strArr[3]);
@@ -40,5 +41,9 @@ public class Server {
 
     public String getServerName() {
         return serverName;
+    }
+
+    public String getServerType() {
+        return serverType;
     }
 }
