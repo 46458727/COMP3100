@@ -12,7 +12,7 @@ public class LRRIterator implements Iterable<Server> {
         String largestType = serverL.get(0).getServerType();
 
         for (Server s : serverL) {
-            if (s.getCore().equals(largestCore) && s.getServerName().equals(largestType)) lRRServers.add(s);
+            if (s.getCore().equals(largestCore) && s.getServerType().equals(largestType)) lRRServers.add(s);
             else break;
         };
     }
