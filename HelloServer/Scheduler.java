@@ -14,6 +14,6 @@ public class Scheduler {
 
     public void scheduleJob(ConnectionManager conMan, ServerManager sManager, Job j) throws IOException { 
         //asks server to schedule the given job on the server decided by the iterator.
-        conMan.serverMsg(String.format("%s %d %s\n", SCHD, j.jobID, iterator.next().getServerName()));
+        conMan.serverMsg(String.format("%s %d %s\n", SCHD, j.getJobID(), iterator.next().getServerName()));
     }
 }

@@ -1,5 +1,5 @@
 public class Server {
-    private String serverName, serverType, state;
+    private String name, type, state;
     private Integer core, memory, disk;
 
     public Server (String[] strArr) {
@@ -7,9 +7,9 @@ public class Server {
         if (strArr.length != 9) return;
 
         //[x] is what it's assigned to e.g. [0] is serverType
-        serverType = strArr[0];
+        type = strArr[0];
         //name is servernumber & type
-        serverName = String.format("%s %s", strArr[0], strArr[1]);
+        name = String.format("%s %s", strArr[0], strArr[1]);
         //isitrunning idle offline etc.
         state = strArr[2];
         core = Integer.parseInt(strArr[4]);
@@ -35,19 +35,15 @@ public class Server {
         return state;
     }
 
-    public void serverFailed() {
-        this.state = "FAILED";
-    }
-
-    public void serverRecovered() {
-        this.state = "BOOTING";
+    public void setState(String state) { 
+        this.state = state;
     }
 
     public String getServerName() {
-        return serverName;
+        return name;
     }
 
     public String getServerType() {
-        return serverType;
+        return type;
     }
 }

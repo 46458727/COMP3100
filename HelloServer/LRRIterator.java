@@ -1,18 +1,15 @@
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LRRIterator implements Iterable<Server> {
     //servers to be used by iterator
     private List<Server> lRRServers;
+    
 
     public LRRIterator(List<Server> serverL) {
-        //serverL has been pre-sorted by the Servermanager
-        //to be used for LRR 
-        String largestType = serverL.get(0).getServerType();
-        //acceses each server, tests if server type matches the largest type, if it does add it to the collection, if it doesn ignore.
-        lRRServers = serverL.stream().filter(i -> i.getServerType().equals(largestType)).collect(Collectors.toList());
-
+        //removes all unimportant servers, serverL has been sorted descending.
+        serverL.removeIf(server -> !server.getServerType().equals(serverL.get(0).getServerType()));
+        lRRServers = serverL;
     }
 
     @Override
