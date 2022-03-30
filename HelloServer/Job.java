@@ -2,8 +2,9 @@ public class Job {
     Integer submitTime, jobID, estRuntime, core, memory, disk;
     String status;
     public Job(String[] sArr) {
+        //7 is expected number of items for a job to have
         if (sArr.length != 7) return;
-        //is a comment really necessary to explain this?
+        //[x] is what the value is assigned to e.g. [1] = submitTime for job  
         submitTime = Integer.parseInt(sArr[1]);
         jobID = Integer.parseInt(sArr[2]);
         estRuntime = Integer.parseInt(sArr[3]);

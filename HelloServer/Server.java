@@ -3,11 +3,14 @@ public class Server {
     private Integer core, memory, disk;
 
     public Server (String[] strArr) {
+        //9 is the expected number of items for a Server construction
         if (strArr.length != 9) return;
 
-        //store the servers type and name seperately
+        //[x] is what it's assigned to e.g. [0] is serverType
         serverType = strArr[0];
+        //name is servernumber & type
         serverName = String.format("%s %s", strArr[0], strArr[1]);
+        //isitrunning idle offline etc.
         state = strArr[2];
         core = Integer.parseInt(strArr[4]);
         memory = Integer.parseInt(strArr[5]);

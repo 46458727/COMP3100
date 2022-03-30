@@ -25,16 +25,11 @@ public class LRRIterator implements Iterable<Server> {
             public boolean hasNext() {
                 return true;
             }
-            
+
             //we want to loop over all items continously.
             @Override
             public Server next() {
                 return lRRServers.get(currentIndex++ % lRRServers.size());
-            }
-
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException();
             }
         };
         return iterator;
