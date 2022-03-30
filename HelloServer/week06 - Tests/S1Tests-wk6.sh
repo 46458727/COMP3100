@@ -2,7 +2,7 @@
 # make sure you have your client and ds-sim (ds-server and ds-client) all in the same directory and test configuration files in configs directory 
 # to kill multiple runaway processes, use 'pkill runaway_process_name'
 # For the Java implementation, use the following format: ./demoS1Final.sh [Java specific arugment...] [-n] your_client.class [your client specific argument...]
-configDir="./S1DemoConfigs"
+configDir="./S1testConfigs"
 diffLog="stage1.diff"
 
 if [[ ! -d $configDir ]]; then

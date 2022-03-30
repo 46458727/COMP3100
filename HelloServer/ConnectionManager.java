@@ -14,30 +14,38 @@ public class ConnectionManager {
 
     public Socket sock;
     public ConnectionManager() throws UnknownHostException, IOException{
+        //open socket
         sock = new Socket(HOST, PORT);
+        //store incoming chatters
         dis = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+        //store messages to send
         dos = new DataOutputStream(sock.getOutputStream());
     }
 
-    public ServerManager handShake(JobManager jManager, ConnectionManager cManager) throws IOException{
+    public ServerManager handShake(JobManager jManager, ConnectionManager cManager) throws IOException {
+        //basic steps before handshake job
         serverMsg(HELO);
         serverMsg(AUTH);
+        //jobManager makes more sense to handle the job
         return jManager.handshakeJob(cManager);
     }
     public String serverMsg(String msg) throws IOException {
         writeflush(dos, msg);
-        
+        //wait till message comes in
         while (!dis.ready());
-
+        //return the line that came in
         return dis.readLine();
     }
 
     private static void writeflush(DataOutputStream dos, String s) throws IOException {
+        //setup the command to send
         dos.write(s.getBytes());
+        //pushhhhhh
         dos.flush();
     }
 
     public void quit() throws IOException {
+        //exiting gracefully, so graceful.
         serverMsg(QUIT);
         sock.close();
     }

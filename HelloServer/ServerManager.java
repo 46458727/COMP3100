@@ -8,7 +8,6 @@ public class ServerManager {
     public static List<Server> serverL;
     private static final String OK = "OK\n", GETS = "GETS All\n", RESF = "RESF";
     public ServerManager(ConnectionManager conMan) throws IOException {
-        // Helo & Auth
         //To store a list of all servers
         serverL = new ArrayList<Server>();
         //gets a list of all servers to reference later
@@ -24,7 +23,7 @@ public class ServerManager {
     }
 
     public void serverStatusUpdate(String[] sInfo) {
-        
+        //Tracks if server is avaliable to send a job
         for (Server s : serverL) {
             if (s.getServerName().equals(String.format("%s %s", sInfo[0], sInfo[1]))) { 
                 if (sInfo[0].equals(RESF))  s.serverFailed();
