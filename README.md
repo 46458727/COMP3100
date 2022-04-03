@@ -4,8 +4,8 @@ COMP3100 DS-SIM Assignment 1 DS-SIM client
 
 An implentation of DS-Client using LRR scheduler
 
-4.5 Usage instructions
-  1. Clone the client git repository https://github.com/46458727/COMP3100
+Usage instructions
+  1. Clone the client git repository
   2. Navigate to HelloServer (cd /HelloServer/)
   3. Compile client.java (javac client.java)
   4. Clone DS-Sim https://github.com/distsys-MQ/ds-sim
