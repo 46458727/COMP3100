@@ -12,3 +12,10 @@ Usage instructions
   5. Copy DS-Server and config files (src/pre-compiled/DS-Server and /configs/sample-configs)
   6. run ds-server with sample config file (/ds-server -c file -n)
   7. run client.class (java client)
+
+Credits:
+Files:
+ - DS-Server
+ - DS-Client
+Taken From: https://github.com/distsys-MQ/ds-sim/blob/master/src/pre-compiled/ds-client
+Developed By: u/https://github.com/young-c-lee
