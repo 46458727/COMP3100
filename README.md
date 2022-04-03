@@ -13,7 +13,6 @@ Usage instructions
   6. run ds-server with sample config file (/ds-server -c file -n)
   7. run client.class (java client)
 
-Credits:
 Files:
  - DS-Server
  - DS-Client
