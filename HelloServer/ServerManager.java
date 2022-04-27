@@ -5,13 +5,13 @@ import java.util.List;
 
 public class ServerManager {
     public static List<Server> serverL;
-    private static final String OK = "OK\n", GETS = "GETS All\n", RESF = "RESF";
+    private static final String OK = "OK\n", GETSALL= "GETS All\n", RESF = "RESF";
 
     public ServerManager(ConnectionManager conMan) throws IOException {
         // To store a list of all servers
         serverL = new ArrayList<Server>();
         // gets a list of all servers to reference later
-        conMan.serverMsg(GETS);
+        conMan.serverMsg(GETSALL);
         // Assumes message is DATA, goes ok, guards on more info left, adds server to
         // list
         for (serverL.add(new Server(conMan.serverMsg(OK).split(" "))); conMan.dis.ready(); serverL.add(new Server(conMan.dis.readLine().split(" "))));

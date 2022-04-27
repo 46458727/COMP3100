@@ -1,9 +1,10 @@
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class JobManager {
     // efficient job access if ever need to implement checks (jobID, Job)
-    private static HashMap<Integer, Job> jobL;
+    public static HashMap<Integer, Job> jobL;
     // String Commands
     private static final String REDY = "REDY\n", JOBN = "JOBN", NONE = "NONE", JOBP = "JOBP", RESF = "RESF",
             RESR = "RESR", JCPL = "JCPL";
@@ -12,7 +13,7 @@ public class JobManager {
     // JobManager stores the scheduler
     private Scheduler jobScheduler;
     // Current job
-    private Integer jobNumber;
+    public static Integer jobNumber;
 
     public JobManager() throws IOException {
         jobL = new HashMap<Integer, Job>();
@@ -54,14 +55,21 @@ public class JobManager {
         }
     }
 
-    public ServerManager handshakeJob(ConnectionManager cManager) throws IOException {
+    public ServerManager handshakeJob(ConnectionManager cManager, String[] args) throws IOException {
         // Handshake process is a unique job request which sets up everthing as such it
         // is handled seperately
         addJob(new Job(cManager.serverMsg(REDY).split(" ")));
         // initialises server list to be used for rest of assigning
         ServerManager sManager = new ServerManager(cManager);
         // has been setup independantly to account for multiple algo's later
-        jobScheduler = new Scheduler(new LRRIterator(ServerManager.serverL).iterator());
+        Iterator<Server> sIter;
+        //if (args[1].toLowerCase().equals("lrr")) {
+            //sIter = new LRRIterator(ServerManager.serverL).iterator();
+        //} else {
+            sIter = new FCIterator(cManager, this).iterator();
+        //}
+
+        jobScheduler = new Scheduler(sIter);
         // schedules the job
         scheduleJob(cManager, sManager);
         return sManager;

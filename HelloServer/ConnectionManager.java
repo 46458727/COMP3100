@@ -23,12 +23,12 @@ public class ConnectionManager {
         dos = new DataOutputStream(sock.getOutputStream());
     }
 
-    public ServerManager handShake(JobManager jManager, ConnectionManager cManager) throws IOException {
+    public ServerManager handShake(JobManager jManager, ConnectionManager cManager, String[] args) throws IOException {
         // basic steps before handshake job
         serverMsg(HELO);
         serverMsg(AUTH);
         // jobManager makes more sense to handle the job
-        return jManager.handshakeJob(cManager);
+        return jManager.handshakeJob(cManager, args);
     }
 
     public String serverMsg(String msg) throws IOException {
