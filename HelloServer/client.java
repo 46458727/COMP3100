@@ -7,7 +7,7 @@ public class client {
         // creates a jobManager
         JobManager jManager = new JobManager();
         // creates the initial handshake
-        ServerManager sManager = cManager.handShake(jManager, cManager);
+        ServerManager sManager = cManager.handShake(jManager, cManager, args);
         // schedulse jobs till no more jobs
         while (jManager.jobAvaliable()) {
             jManager.getJob(cManager, sManager);

@@ -7,7 +7,7 @@ public class Scheduler {
 
     public Scheduler(Iterator<Server> iterType) {
         /*Job scheduler should be able to be expanded later into multiple algo's as such it takes an iterator
-        the iterator will store the servers which match the description of the algo.
+        the iterator will provide the scheduler with a simple implementation of asking the iterator to pick the next server.
         */
         iterator = iterType;
     }
