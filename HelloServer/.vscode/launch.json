@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "java",
             "name": "Launch client",
@@ -11,6 +12,16 @@
             "mainClass": "client",
             "projectName": "HelloServer_b28b6d11"
         },
+        {
+			"type": "java",
+			"name": "Debug (Launch) - Current File",
+			"request": "launch",
+			"mainClass": "${file}",
+			"args": [ 
+				"-a",
+				"FC"
+			]
+		},
         {
             "type": "java",
             "name": "Launch Current File",
