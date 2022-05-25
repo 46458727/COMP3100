@@ -56,7 +56,7 @@ public class JobManager {
         addJob(new Job(cManager.serverMsg(REDY).split(" ")));
         // initialises server list to be used for rest of assigning
         ServerManager sManager = new ServerManager(cManager);
-            Iterator<Server>  sIter;
+        Iterator<Server>  sIter;
         switch (args[1].toLowerCase()) {
             case "lrr":
                 sIter = new LRRIterator(ServerManager.serverL).iterator();

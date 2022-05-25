@@ -4,7 +4,12 @@ import java.util.Arrays;
 public class client {
     public static void main(String[] args) throws IOException {
         String[] testArgs = {"-a", "BFC"};
-        if (! (Arrays.stream(testArgs).anyMatch("-a"::equals))) return; 
+        //expandable args try catch with necessary arg -a and expandability by looking for even number of args assuming (-arg answ)
+        if (! (Arrays.stream(testArgs).anyMatch("-a"::equals)) || testArgs.length > 1) {
+            System.out.println("Please enter valid args (-a lrr)");
+            System.exit(-1);
+        }  
+
         // open socket to talk with server
         ConnectionManager cManager = new ConnectionManager();
         // creates a jobManager
