@@ -24,6 +24,7 @@ public class ConnectionManager {
         // store messages to send
         dos = new DataOutputStream(sock.getOutputStream());
     }
+
     public static String serverMsg(String msg) throws IOException {
         say(msg);
         
@@ -33,7 +34,7 @@ public class ConnectionManager {
 
     public static void say(String msg) throws IOException {
         writeflush(msg);
-        
+
         // wait till message comes in
         while (!dis.ready());
     }

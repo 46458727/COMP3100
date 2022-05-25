@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -6,9 +7,11 @@ public class LRRIterator implements Iterable<Server> {
     private List<Server> lRRServers;
     
 
-    public LRRIterator(List<Server> serverL) {
+    public LRRIterator(CommandExecution cExecution) throws IOException {
         //removes all unimportant servers, serverL has been sorted descending.
+        List<Server> serverL = cExecution.getsAll();
         serverL.removeIf(server -> !server.getServerType().equals(serverL.get(0).getServerType()));
+        
         lRRServers = serverL;
     }
 

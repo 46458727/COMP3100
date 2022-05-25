@@ -2,14 +2,11 @@ import java.io.IOException;
 import java.util.Iterator;
 
 public class FCIterator implements Iterable<Server> {
-    ConnectionManager cManager;
-    private Server FCServer;
+    CommandExecution cExecution;
 
-    private static final String GETSC = "GETS Capable", OK = "OK\n";
-    
-    FCIterator(ConnectionManager cManager, JobManager jManager) {
-        this.cManager = cManager;
-    } 
+    FCIterator (CommandExecution commandExecution) throws IOException{
+        cExecution = commandExecution;
+    }
 
     @Override
     public Iterator<Server> iterator() {
@@ -26,18 +23,7 @@ public class FCIterator implements Iterable<Server> {
             //we want to loop over all items continously.
             @Override
             public Server next() {
-                try {
-                    
-                    cManager.serverMsg(String.format("%s %s %s %s\n", GETSC, JobManager.curJob.getCore(), JobManager.curJob.getMemory(), JobManager.curJob.getDisk()));
-                    
-                    for (FCServer = new Server(cManager.serverMsg(OK).split(" ")); cManager.dis.ready(); cManager.dis.readLine());
-
-                    cManager.serverMsg(OK);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                return FCServer;
+                return cExecution.getsCapable(JobManager.curJob).get(0);
             }
         };
 
@@ -46,3 +32,4 @@ public class FCIterator implements Iterable<Server> {
         return iterator;
     }
 }
+
