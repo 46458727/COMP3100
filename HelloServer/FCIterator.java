@@ -26,17 +26,17 @@ public class FCIterator implements Iterable<Server> {
             //we want to loop over all items continously.
             @Override
             public Server next() {
-                Job curJob = JobManager.jobL.get(JobManager.jobNumber-1);
                 try {
-                    cManager.serverMsg(String.format("%s %s %s %s\n", GETSC, curJob.getCore(), curJob.getMemory(), curJob.getDisk()));
+                    
+                    cManager.serverMsg(String.format("%s %s %s %s\n", GETSC, JobManager.curJob.getCore(), JobManager.curJob.getMemory(), JobManager.curJob.getDisk()));
                     
                     for (FCServer = new Server(cManager.serverMsg(OK).split(" ")); cManager.dis.ready(); cManager.dis.readLine());
 
                     cManager.serverMsg(OK);
                 } catch (IOException e) {
-                    
                     e.printStackTrace();
                 }
+
                 return FCServer;
             }
         };

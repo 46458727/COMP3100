@@ -1,24 +1,16 @@
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Iterator;
 
 public class JobManager {
-    // efficient job access if ever need to implement checks (jobID, Job)
-    public static HashMap<Integer, Job> jobL;
     // String Commands
     private static final String REDY = "REDY\n", JOBN = "JOBN", NONE = "NONE", JOBP = "JOBP", RESF = "RESF",
-            RESR = "RESR", JCPL = "JCPL";
+            RESR = "RESR", JCPL = "JCPL", OK = "OK";
     // Are there any jobs left?
     private boolean jobsLeft = true;
     // JobManager stores the scheduler
     private Scheduler jobScheduler;
     // Current job
-    public static Integer jobNumber;
-
-    public JobManager() throws IOException {
-        jobL = new HashMap<Integer, Job>();
-        jobNumber = 0;
-    }
+    public static Job curJob;
 
     public void getJob(ConnectionManager cManager, ServerManager sManager) throws IOException {
         // break the job up up
@@ -47,6 +39,9 @@ public class JobManager {
                 // record job completion
                 jobComplete(jobReqResponse);
                 break;
+            
+            case OK:
+                break;
 
             default:
                 // if job is unk exit as it would be unaccounted for
@@ -61,13 +56,22 @@ public class JobManager {
         addJob(new Job(cManager.serverMsg(REDY).split(" ")));
         // initialises server list to be used for rest of assigning
         ServerManager sManager = new ServerManager(cManager);
-        // has been setup independantly to account for multiple algo's later
-        Iterator<Server> sIter;
-        //if (args[1].toLowerCase().equals("lrr")) {
-            //sIter = new LRRIterator(ServerManager.serverL).iterator();
-        //} else {
-            sIter = new FCIterator(cManager, this).iterator();
-        //}
+            Iterator<Server>  sIter;
+        switch (args[1].toLowerCase()) {
+            case "lrr":
+                sIter = new LRRIterator(ServerManager.serverL).iterator();
+                break;
+            case "fc":
+                sIter = new FCIterator(cManager, this).iterator();
+                break;
+            case "bfc":
+                sIter = new BFButBetterIterator(cManager, this).iterator();
+                break;
+            default:
+                System.out.println("Please enter a valid algo (FC, BF, LRR)");
+                sIter = new BFButBetterIterator(cManager, this).iterator();
+                System.exit(-1);
+        }
 
         jobScheduler = new Scheduler(sIter);
         // schedules the job
@@ -76,17 +80,17 @@ public class JobManager {
     }
 
     public void addJob(Job newJob) {
-        jobL.put(newJob.getJobID(), newJob);
+        curJob = newJob;
     }
 
     public void scheduleJob(ConnectionManager cManager, ServerManager sManager) throws IOException {
         // schedules the current job
-        jobScheduler.scheduleJob(cManager, sManager, jobL.get(jobNumber++));
+        jobScheduler.scheduleJob(cManager, sManager, curJob);
     }
 
     public void jobComplete(String[] jInfo) {
         // update job status
-        jobL.get(Integer.parseInt(jInfo[2])).setStatus("COMPLETE");
+        curJob.setStatus("COMPLETE");
     }
 
     public boolean jobAvaliable() {
