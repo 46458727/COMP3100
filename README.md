@@ -11,7 +11,7 @@ Usage instructions
   4. Clone DS-Sim https://github.com/distsys-MQ/ds-sim
   5. Copy DS-Server and config files (src/pre-compiled/DS-Server and /configs/sample-configs)
   6. run ds-server with sample config file (/ds-server -c file -n)
-  7. run client.class (java client)
+  7. run client.class (java client -a CUM)
 
 Files:
  - DS-Server
