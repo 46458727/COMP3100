@@ -24,7 +24,7 @@ public class Client {
 
     public static void main(String[] args) throws IOException {
         //if no arguments given new arg will be used || if args not in format -a algo
-        if (args.length == 0 || args.length != 2 || !args[0].equals("-a")) { 
+        if (args.length != 2 || !args[0].equals("-a")) { 
             String[] tArgs = {"-a", "BFC"};
             args = tArgs;
             System.out.println("No or invalid arguments were given, please enter in the form -a (LRR, BFC, FC), non-case sesnsitive, default (BFC) used");

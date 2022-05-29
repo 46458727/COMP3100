@@ -1,6 +1,6 @@
 public class Server {
     private String name, type, state;
-    private Integer core, memory, disk;
+    private Integer core, memory, disk, estWaitTime;
 
     public Server (String[] strArr) {
         //9 is the expected number of items for a Server construction
@@ -15,8 +15,6 @@ public class Server {
         core = Integer.parseInt(strArr[4]);
         memory = Integer.parseInt(strArr[5]);
         disk = Integer.parseInt(strArr[6]);
-
-        //not all of the get() functions are currently used but will be implemented in stage 2 and as such are useful.
     }
 
     public Integer getCore() {
@@ -45,5 +43,13 @@ public class Server {
 
     public String getServerType() {
         return type;
+    }
+
+    public void setEstWaitTime(String eString) {
+        estWaitTime = Integer.parseInt(eString);
+    }
+
+    public Integer getEstWaitTime() {
+        return estWaitTime;
     }
 }

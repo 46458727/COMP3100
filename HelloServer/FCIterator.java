@@ -1,10 +1,9 @@
-import java.io.IOException;
 import java.util.Iterator;
 
 public class FCIterator implements Iterable<Server> {
     CommandExecution cExecution;
 
-    FCIterator (CommandExecution commandExecution) throws IOException{
+    FCIterator (CommandExecution commandExecution) {
         cExecution = commandExecution;
     }
 

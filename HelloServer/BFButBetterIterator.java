@@ -1,13 +1,15 @@
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 public class BFButBetterIterator implements Iterable<Server> {
-    private Server FAServer;
     CommandExecution cExecution;
-
+    List<Server> serverL;
+    //List<Server> secondServerL;
     BFButBetterIterator(CommandExecution commandExecution) {
         cExecution = commandExecution;
+        serverL = new ArrayList<>();
     }
 
     @Override
@@ -21,13 +23,14 @@ public class BFButBetterIterator implements Iterable<Server> {
 
             @Override
             public Server next() {
-                List<Server> serverL;
                 
                 serverL = cExecution.getsAvailable(JobManager.curJob);
             
                 if (serverL.isEmpty())  {
                     serverL = cExecution.getsCapable(JobManager.curJob);
                 }
+                //serverL = cExecution.getsCapable(JobManager.curJob);
+                Collections.sort(serverL, new ServerSortBySize());
 
                 return serverL.get(0);
                    

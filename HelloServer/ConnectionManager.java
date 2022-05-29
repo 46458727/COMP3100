@@ -40,7 +40,7 @@ public class ConnectionManager {
     }
 
     public static String hear() throws IOException {
-        return dis.readLine();
+        return dis.ready() ? dis.readLine() : null;
     }
 
     private static void writeflush(String s) throws IOException {
