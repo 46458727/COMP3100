@@ -3,11 +3,11 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class BFButBetterIterator implements Iterable<Server> {
+public class CUMIterator implements Iterable<Server> {
     CommandExecution cExecution;
     List<Server> serverL;
     //List<Server> secondServerL;
-    BFButBetterIterator(CommandExecution commandExecution) {
+    CUMIterator(CommandExecution commandExecution) {
         cExecution = commandExecution;
         serverL = new ArrayList<>();
     }
