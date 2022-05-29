@@ -14,11 +14,11 @@ public class Scheduler {
                 iterator = new FCIterator(cExecution).iterator();
                 break;
             case "bfc":
-                iterator = new BFButBetterIterator(cExecution).iterator();
+                iterator = new CUMIterator(cExecution).iterator();
                 break;
             default:
                 System.out.println("Please enter a valid algo (FC, BF, LRR)");
-                iterator = new BFButBetterIterator(cExecution).iterator();
+                iterator = new CUMIterator(cExecution).iterator();
                 System.exit(-1);
         }
     }
