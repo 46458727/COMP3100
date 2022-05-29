@@ -1,4 +1,5 @@
 public enum Commands {
+    //All possible server commands
     HELO("HELO\n"),
     QUIT("QUIT\n"),
     OK("OK\n"),

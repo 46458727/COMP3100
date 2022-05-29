@@ -5,7 +5,7 @@ public class Scheduler {
     private static Iterator<Server> iterator;
 
     public Scheduler(String algo, CommandExecution cExecution) throws IOException {
-
+        //switch to figure out which algo the user selected
         switch (algo.toLowerCase()) {
             case "lrr":
                 iterator = new LRRIterator(cExecution).iterator();
@@ -13,11 +13,12 @@ public class Scheduler {
             case "fc":
                 iterator = new FCIterator(cExecution).iterator();
                 break;
-            case "bfc":
+            case "cum":
                 iterator = new CUMIterator(cExecution).iterator();
                 break;
             default:
-                System.out.println("Please enter a valid algo (FC, BF, LRR)");
+                //if the entered case doesnt match any of the cases give the user the avail cases and exit
+                System.out.println("Please enter a valid algo (FC, CUM, LRR)");
                 iterator = new CUMIterator(cExecution).iterator();
                 System.exit(-1);
         }

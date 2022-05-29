@@ -20,6 +20,7 @@ public class JobManager {
     public void getJob() throws IOException {
         // break the job up up
         String[] jobReqResponse = cExecution.REDY().split(" ");
+        //uses the responses enum to test on the current response to REDY
         Responses r = Responses.valueOf(jobReqResponse[0]);
         switch (r) {
             case NONE: 

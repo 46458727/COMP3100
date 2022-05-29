@@ -1,4 +1,5 @@
 public enum Responses {
+    //list of possible server responses
     OK("OK"),
     TERM("TERM "),
     NONE("NONE"),

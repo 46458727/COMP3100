@@ -25,13 +25,13 @@ public class CUMIterator implements Iterable<Server> {
             public Server next() {
                 
                 serverL = cExecution.getsAvailable(JobManager.curJob);
-            
+                //if no servers avaliable gets capable
                 if (serverL.isEmpty())  {
                     serverL = cExecution.getsCapable(JobManager.curJob);
                 }
-                //serverL = cExecution.getsCapable(JobManager.curJob);
+                //sort on wait time cpu size asc
                 Collections.sort(serverL, new ServerSortBySize());
-
+                //get best
                 return serverL.get(0);
                    
             }

@@ -25,9 +25,9 @@ public class Client {
     public static void main(String[] args) throws IOException {
         //if no arguments given new arg will be used || if args not in format -a algo
         if (args.length != 2 || !args[0].equals("-a")) { 
-            String[] tArgs = {"-a", "BFC"};
+            String[] tArgs = {"-a", "CUM"};
             args = tArgs;
-            System.out.println("No or invalid arguments were given, please enter in the form -a (LRR, BFC, FC), non-case sesnsitive, default (BFC) used");
+            System.out.println("No or invalid arguments were given, please enter in the form -a (LRR, CUM, FC), non-case sesnsitive, default (CUM) used");
         }
     
         configure(args[1]);

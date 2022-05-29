@@ -2,6 +2,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CommandExecution {
+    //class which manages all communication with ConnectionManager
+    //each function performs and server command
     public void handShake(JobManager jManager) throws IOException {
         // basic steps before handshake job
         HELO();
@@ -65,6 +67,7 @@ public class CommandExecution {
     }
 
     private ArrayList<Server> getsGeneral() throws IOException {
+        //Each gets call follows a pattern, this functions access the data and hands back the list of servers
         ArrayList<Server> serverL = new ArrayList<Server>();
         int numLines = Integer.parseInt(ConnectionManager.hear().split(" ")[1]);
         if (numLines > 0)  {
@@ -77,7 +80,7 @@ public class CommandExecution {
         }
         
         ConnectionManager.serverMsg(Commands.OK.get());
-        
+        //update the job wait time for each server
         for (Server s : serverL) s.setEstWaitTime(EJWT(s.getServerName()));
         
         return serverL;

@@ -31,7 +31,7 @@ public class ConnectionManager {
         // return the line that came in
         return hear();
     }
-
+    
     public static void say(String msg) throws IOException {
         writeflush(msg);
 
@@ -40,6 +40,7 @@ public class ConnectionManager {
     }
 
     public static String hear() throws IOException {
+        //Manages all communication with DSServer
         return dis.ready() ? dis.readLine() : null;
     }
 
